@@ -1,0 +1,437 @@
+A {
+
+	A(){ default constrcutor of A}
+
+	show() { show() of A }
+
+	print() { print of A }
+
+}
+B extends A {
+	B() { default constructor of B }
+
+	show() { show() of B }
+
+	display() { display of B } 
+}
+C {
+	main() { A a = new B(); a.display(); }
+}
+
+Static 
+	Variables
+	Methods
+	Blocks
+
+
+Static Variables
+MyClass {
+	final int max = 500;
+	public int num1 = 10;
+	public static int num2 = 10;
+
+	display(){
+		sysout(num1);
+		sysout(num2);
+		num1 = num1 + 10;
+		num2 = num2 + 10;
+		sysout(num1);
+		sysout(num2);
+	}
+}
+MyClassMain {
+	main() {
+		MyClass.num2 = 20;
+		Sysout(MyClass.num2);
+
+		MyClass myClass = new MyClass();
+		myClass.num2 = 10;
+	}
+}
+
+
+	Static Function
+		1. Static function can access/use only static variables,functions
+		2. You can call static function without object.
+
+AMain {
+	private static num1 = 10;	
+	private static int num2 = 10;
+	public static void main(String args[]){
+		int x = 10;
+		sysout(num1); //error
+		sysout(num2); //work
+		
+		print();
+	}
+	
+	public static void print(){
+		num2 = 20;
+		num1 = 200;//error bcos nonstatic variable in static funct
+	}
+}
+
+	
+	Static block
+MyClass {
+	
+	public int num1 = 10;
+	public static int num2 = 10;
+	
+	MyClass(){ default constrcutor of MyClass }
+
+	static { static block of MyClass }
+
+	{ non static block of MyClass }
+
+	public void show() { sysout("Hi"); }
+}
+MyClassMain {
+	main() { 
+		sysout("main start");
+		MyClass.num2 = 20;
+		
+		MyClass	 myClass = new MyClass();
+		myClass.num1 = 211;
+
+		sysout("main end");
+	}
+}
+
+Abstract Class and Abstract Method
+
+	Abstract Class : It cannot be instantiated.
+														You cannot create object of abstract class.
+
+	Abstract Method : 
+								1. abstract method have to be in a abstract class always.
+								2. abstract method dose not have body.
+										it contains only declaration.
+
+Day 4 - Agenda
+	1.Interfaces - done
+	2.Arrays
+	3.Exception Handling
+	4.File Input Output
+
+Day 5 
+	1. Threads (Multi Threading)
+	2. Collections
+
+Day 6
+	1. Collections
+	
+
+Day 7
+	1. Lambda Expressions
+	2. Java Database Connectivity 
+
+Day 8
+	1. Java Database Connectivity
+	2. Recap
+
+
+inteface MyInterface {
+	void show();
+}
+
+inteface YourInteface {
+	int x = 10;
+	//public static final int x = 10;
+	void display();
+	// public abstract void display();
+}
+
+class MyClass implements MyInterface  , YourInterface{
+	public void show() {
+		sysout("Hi");
+	}
+	public void display() {
+		sysout("Hi");
+	}
+}
+Abstract vs Interface
+abstract class MyClass {
+	public abstract void show();
+	public abstract void print();
+	public abstract void display();
+}
+class YourClass extends MyClass{
+	public void show(){
+		sysout("hi")
+	}
+
+	public void print() {
+	}
+
+	public void display(){
+	}
+
+}
+
+
+
+Arrays
+
+	int [] numbers = new int[5];
+	
+	main() {
+		//1. 
+		numbers[0] = 10;
+		numbers[1] = 20;
+		numbers[2] = 30;
+		numbers[3] = 1010;
+		numbers[4] = 50;
+
+		//2.
+		for(int i=0;i<5;i++){
+			numbers[i] = scanner.nextInt();
+		}
+
+		//3. Display
+		int j = 3;
+		for(int i : numbers){
+
+			numbers[j] = i + 1000;
+			sysout(i);
+		}
+	
+
+	}
+Data Types
+	1. Primitive Types - int , char , double , boolean , byte , long , float , short
+																			int i = new int();
+
+	2. Reference Types/Non Primitive Types 
+			
+				String  , Class , Interface ,Collections , Array	
+Exception Handling
+
+Types of exceptions in java
+	
+	1.Checked -  (Compile Time Exception)
+			IOException
+			SQLException
+
+	2.Unchecked -(Runtime Exception)
+			InputMismatchException
+
+Classes of Exceptions
+
+Object
+
+Throwable
+
+Exception
+	IOException
+	SQLException
+	FileNotFoundException
+
+RuntimeException
+	InputMismatchException
+	NullPointerException
+	ArrayIndexOutofBoundsException
+File Input Ouput
+
+java.io
+File Class : Retrive metadata of file.
+
+Read(input) and Write(output)
+
+Bytes - Image , Audio , Text
+	
+	InputStream - Abstract Class - Read
+		FileInputStream	
+		BufferedInputStream
+	
+	OutoutStream - Abstract Class - Write
+		FileOutputStream
+		BufferedOutputStream
+
+Char - Text Files
+	Reader - Abstract Class
+		FileReader
+		BufferedReader -  Line by Line
+
+	Writer - Abstract Class
+		FileWriter
+		BufferedWriter - Line by Line
+Multi Threading
+Multi Tasking
+Multi Processing 
+
+	https://github.com/vivek-gohil/CitiBank-Jan-22
+
+9920728158
+
+Threads
+
+ 				Future 	result = ThreadOne - Task
+
+						ThreadTwo - Task
+								threadTwoResult = result + processing
+
+
+
+Resource {
+	message(String textMessage){
+		sysout(textMessage)
+	}
+}
+MyThread implements Runnable {
+	
+	Resource resource;
+	String textMessage;
+
+	public MyThread(Resource resource , String textMessage){
+		this.resource = resource;
+		this.textMessage = textMessage;
+	}	
+
+	public void run(){
+		resource.message(textMessage);
+	}
+
+}
+
+MyMain {
+	main() {
+		Resource resource = new Resource();
+		MyThread thread1 = new MyThread(resource , "Hi");
+		Thread t1 = new Thread(thread1);
+		t1.start();
+			
+		
+	}
+
+}
+
+
+
+com.citibank.main.domain
+//resource
+Account {
+	private double balance;
+
+	//param constor
+	
+	withdraw(double amount){
+		//code
+		//use thread.sleep
+	}
+
+	deposit(double amount){
+		//code
+	}
+}
+
+
+//Thread 
+AccountThread implements Runnable {
+	//code
+
+	run(){
+	//....
+	}
+	
+}
+
+//Main
+//set the balance = 50000;
+
+call Withdraw
+
+	if(amount > balance) - wait for deposit
+
+call Deposit
+	notify
+
+Collections API
+
+	Collections are dynamic in size.
+
+CRUD
+C - Create - done
+R - Read (read one - done , read all - done)
+U - Update - done
+D - Delete - done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
